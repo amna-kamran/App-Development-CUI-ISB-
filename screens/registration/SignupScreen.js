@@ -17,7 +17,8 @@ import RegTextInput from '../../components/RegTextInput';
 import LoginScreen from './LoginScreen';
 // import firestore from '@react-native-firebase/firestore';
 
-const SignupScreen = () => {
+const SignupScreen = ({route}) => {
+  const {userType} = route.params;
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +26,7 @@ const SignupScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log(userType);
   const handleCreateAccount = async () => {
     if (
       name !== '' &&
@@ -69,9 +71,6 @@ const SignupScreen = () => {
       Alert.alert('Enter complete Details!');
     }
   };
-  const handleSignInPress = () => {
-    navigation.goBack();
-  };
 
   return isLoading ? (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -102,8 +101,6 @@ const SignupScreen = () => {
           value={confirmPassword}
           onChangeText={setConfirmPassword}
         />
-      </View>
-      <View style={styles.buttonsView}>
         <TouchableOpacity style={styles.button} onPress={handleCreateAccount}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
@@ -111,12 +108,13 @@ const SignupScreen = () => {
           <Text>Already Have An Account? </Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate(LoginScreen);
+              navigation.navigate('LoginScreen', {userType: userType});
             }}>
             <Text style={{marginLeft: 5, fontWeight: 'bold'}}>Sign In</Text>
           </TouchableOpacity>
         </View>
       </View>
+      <View style={styles.buttonsView}></View>
     </View>
   );
 };
@@ -139,15 +137,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   inputsView: {
-    flex: 4.5,
+    flex: 4,
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonsView: {
-    flex: 3,
-    backgroundColor: 'pink',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1.5,
   },
   button: {
     backgroundColor: '#BE9FFD',

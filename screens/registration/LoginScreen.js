@@ -52,21 +52,18 @@ const LoginScreen = ({route}) => {
       Alert.alert('Enter complete Details!');
     }
   };
-  const handleSignUpPress = () => {
-    navigation.navigate('SignupScreen', {userType: userType});
-  };
 
   return isLoading ? (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <ActivityIndicator size={'large'} />
     </View>
   ) : (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={styles.mainView}>
       <View style={styles.headerView}>
         <Image
-          source={require('C:/Users/PMYLS/Desktop/softec/assets/images/signupPic.png')}
+          source={require('C:/Users/PMYLS/Desktop/softec/assets/images/loginPic.png')}
         />
-        <Text style={styles.headerText2}>Let's Get You Signed Up</Text>
+        <Text style={styles.headerText2}>Welcome Back</Text>
       </View>
       <View style={styles.inputsView}>
         <RegTextInput
@@ -79,8 +76,6 @@ const LoginScreen = ({route}) => {
           value={password}
           onChangeText={setPassword}
         />
-      </View>
-      <View style={styles.buttonsView}>
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
@@ -94,6 +89,7 @@ const LoginScreen = ({route}) => {
           </TouchableOpacity>
         </View>
       </View>
+      <View style={styles.bottomView} />
     </View>
   );
 };
@@ -107,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerView: {
-    flex: 2.5,
+    flex: 4,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -116,15 +112,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   inputsView: {
-    flex: 4.5,
+    flex: 4,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  buttonsView: {
-    flex: 3,
-    backgroundColor: 'pink',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   button: {
     backgroundColor: '#BE9FFD',
@@ -139,5 +129,8 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold',
     color: 'white',
+  },
+  bottomView: {
+    flex: 3,
   },
 });

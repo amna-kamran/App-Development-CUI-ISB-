@@ -8,9 +8,13 @@ import {
   Alert,
   ActivityIndicator,
   StyleSheet,
+  Image,
+  Dimensions,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import RegTextInput from '../../components/RegTextInput';
+import LoginScreen from './LoginScreen';
 // import firestore from '@react-native-firebase/firestore';
 
 const SignupScreen = () => {
@@ -74,8 +78,94 @@ const SignupScreen = () => {
       <ActivityIndicator size={'large'} />
     </View>
   ) : (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <TextInput
+    <View style={styles.mainView}>
+      <View style={styles.headerView}>
+        <Image
+          source={require('C:/Users/PMYLS/Desktop/softec/assets/images/signupPic.png')}
+        />
+        <Text style={styles.headerText2}>Let's Get You Signed Up</Text>
+      </View>
+      <View style={styles.inputsView}>
+        <RegTextInput placeholder="Name" value={name} onChangeText={setName} />
+        <RegTextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <RegTextInput
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+        />
+        <RegTextInput
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+        />
+      </View>
+      <View style={styles.buttonsView}>
+        <TouchableOpacity style={styles.button} onPress={handleCreateAccount}>
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <Text>Already Have An Account? </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(LoginScreen);
+            }}>
+            <Text style={{marginLeft: 5, fontWeight: 'bold'}}>Sign In</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default SignupScreen;
+
+const styles = StyleSheet.create({
+  mainView: {
+    height: Dimensions.get('window').height,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  headerView: {
+    flex: 2.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerText2: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  inputsView: {
+    flex: 4.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonsView: {
+    flex: 3,
+    backgroundColor: 'pink',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#BE9FFD',
+    color: 'white',
+    width: '80%',
+    height: 50,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+});
+{
+  /* <TextInput
         style={{
           width: '80%',
           height: 40,
@@ -132,10 +222,5 @@ const SignupScreen = () => {
           Already have an account? Sign In
         </Text>
       </TouchableOpacity>
-    </View>
-  );
-};
-
-export default SignupScreen;
-
-const myStyle = StyleSheet.create({});
+    </View> */
+}

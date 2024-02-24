@@ -7,15 +7,21 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Alert,
+  StyleSheet,
+  Dimensions,
+  Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import RegTextInput from '../../components/RegTextInput';
 
-const LoginScreen = () => {
+const LoginScreen = ({route}) => {
   const navigation = useNavigation();
+  const {userType} = route.params;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  console.log(userType);
 
   const handleLogin = async () => {
     if (email !== '' && password !== '') {
@@ -47,7 +53,7 @@ const LoginScreen = () => {
     }
   };
   const handleSignUpPress = () => {
-    navigation.navigate('SignupScreen');
+    navigation.navigate('SignupScreen', {userType: userType});
   };
 
   return isLoading ? (
@@ -56,40 +62,82 @@ const LoginScreen = () => {
     </View>
   ) : (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <TextInput
-        style={{
-          width: '80%',
-          height: 40,
-          borderWidth: 1,
-          marginBottom: 20,
-          padding: 10,
-        }}
-        placeholder="Email"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={text => setEmail(text)}
-      />
-      <TextInput
-        style={{
-          width: '80%',
-          height: 40,
-          borderWidth: 1,
-          marginBottom: 20,
-          padding: 10,
-        }}
-        placeholder="Password"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={text => setPassword(text)}
-      />
-      <Button title="Login" onPress={handleLogin} />
-      <TouchableOpacity onPress={handleSignUpPress}>
-        <Text style={{color: 'blue', marginVertical: 20}}>
-          Don't have an account? Sign Up
-        </Text>
-      </TouchableOpacity>
+      <View style={styles.headerView}>
+        <Image
+          source={require('C:/Users/PMYLS/Desktop/softec/assets/images/signupPic.png')}
+        />
+        <Text style={styles.headerText2}>Let's Get You Signed Up</Text>
+      </View>
+      <View style={styles.inputsView}>
+        <RegTextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <RegTextInput
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+        />
+      </View>
+      <View style={styles.buttonsView}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Sign In</Text>
+        </TouchableOpacity>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
+          <Text>Don't Have An Account? </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('SignupScreen', {userType: userType});
+            }}>
+            <Text style={{marginLeft: 5, fontWeight: 'bold'}}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };
 
 export default LoginScreen;
+
+const styles = StyleSheet.create({
+  mainView: {
+    height: Dimensions.get('window').height,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  headerView: {
+    flex: 2.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerText2: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  inputsView: {
+    flex: 4.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonsView: {
+    flex: 3,
+    backgroundColor: 'pink',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#BE9FFD',
+    color: 'white',
+    width: '80%',
+    height: 50,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+});

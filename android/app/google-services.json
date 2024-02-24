@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "438411369611",
+    "project_id": "softec-d2fd1",
+    "storage_bucket": "softec-d2fd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438411369611:android:9a89a274344b9bc144888e",
+        "android_client_info": {
+          "package_name": "com.softec"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAD2xERnNdYAXR4Y8sRjlRYIygO9v4IUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

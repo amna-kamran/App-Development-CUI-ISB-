@@ -79,9 +79,7 @@ const SignupScreen = ({route}) => {
   ) : (
     <View style={styles.mainView}>
       <View style={styles.headerView}>
-        <Image
-          source={require('C:/Users/PMYLS/Desktop/softec/assets/images/signupPic.png')}
-        />
+        <Image source={require('../../assets/images/signupPic.png')} />
         <Text style={styles.headerText2}>Let's Get You Signed Up</Text>
       </View>
       <View style={styles.inputsView}>

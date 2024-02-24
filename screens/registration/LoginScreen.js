@@ -60,9 +60,7 @@ const LoginScreen = ({route}) => {
   ) : (
     <View style={styles.mainView}>
       <View style={styles.headerView}>
-        <Image
-          source={require('C:/Users/PMYLS/Desktop/softec/assets/images/loginPic.png')}
-        />
+        <Image source={require('../../assets/images/loginPic.png')} />
         <Text style={styles.headerText2}>Welcome Back</Text>
       </View>
       <View style={styles.inputsView}>

@@ -10,9 +10,7 @@ const SplashScreen = () => {
         <Text style={styles.headerText}>Fitness Freak</Text>
       </View>
       <View style={styles.imageView}>
-        <Image
-          source={require('C:/Users/PMYLS/Desktop/softec/assets/images/gs.png')}
-        />
+        <Image source={require('../../assets/images/gs.png')} />
       </View>
       <View style={styles.buttonView}>
         <TouchableOpacity
